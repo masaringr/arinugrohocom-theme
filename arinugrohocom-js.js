@@ -18,7 +18,14 @@ for (var i = 0; i < list.length; i++) {
   'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+  var forms = document.querySelectorAll('.needs-validation');
+
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzu_Q9eq-G1GOtu0tlwONFdf_6YfRbvkU0L00QVy5PxLO75OWuKOHMVUJWK9mQQi4RE/exec';
+  const form = document.forms['arinugrohocom-contact-form'];
+  const btnSend = document.querySelector(".btn-send");
+  const btnSending = document.querySelector(".btn-sending");
+  const alertSuccess = document.querySelector(".scs-alert");
+  const alertError = document.querySelector(".err-alert");
 
   // Loop over them and prevent submission
   Array.prototype.slice.call(forms)
@@ -27,12 +34,39 @@ for (var i = 0; i < list.length; i++) {
         if (!form.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
+        } else {
+          event.preventDefault()
+
+          btnSend.classList.toggle("d-none");
+          btnSending.classList.toggle("d-none");
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+              console.log('Success!', response)
+              btnSend.classList.toggle("d-none");
+              btnSending.classList.toggle("d-none");
+              alertSuccess.classList.toggle("d-none");
+
+              form.reset();
+              setTimeout(() => {form.classList.toggle("was-validated")},1); //timeout allows for 'was-validated' to be added then removed.
+            })
+            .catch(error => {
+              btnSend.classList.toggle("d-none");
+              btnSending.classList.toggle("d-none");
+              alertError.classList.toggle("d-none");
+              console.error('Error!', error.message)
+            })
         }
 
         form.classList.add('was-validated')
       }, false)
     })
 })()
+
+
+
+// form.addEventListener('submit', e => {
+
+// })
 
 document.addEventListener('DOMContentLoaded', function(){ 
   const today = new Date();

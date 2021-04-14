@@ -221,31 +221,45 @@
                                 <h5 class="text-black-50 fw-normal">Let me know if you have any questions</h5>
                             </div>
                             <div class="col-12 mt-4 mt-md-5">
-                                <form class="row g-3 needs-validation font-fraunces" novalidate>
+                                <form name="arinugrohocom-contact-form" class="row g-3 needs-validation font-fraunces" novalidate>
+                                    <div class="col-12">
+                                        <div class="alert alert-success alert-dismissible fade show d-none scs-alert" role="alert">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            <strong>Message Sent!</strong> I'll contact you back soon.
+                                        </div>
+                                        <div class="alert alert-danger alert-dismissible fade show d-none err-alert" role="alert">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            <strong>Upps!</strong> somethings went wrong.
+                                        </div>
+                                    </div>
+                                    
                                     <div class="col-12 col-md-6">
                                         <label for="validationCustom01" class="form-label text-black-60">Name</label>
-                                        <input type="text" class="form-control text-black-60" id="validationCustom01" required>
+                                        <input type="text" name="nama" class="form-control text-black-60" id="validationCustom01" required>
                                         <div class="invalid-feedback">
                                             Name can not be empty.
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="validationCustom02" class="form-label text-black-60">E-Mail</label>
-                                        <input type="email" class="form-control text-black-60" id="validationCustom02" required>
+                                        <input type="email" name="email" class="form-control text-black-60" id="validationCustom02" required>
                                         <div class="invalid-feedback">
                                             E-Mail address is not correct.
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <label for="validationCustom03" class="form-label text-black-60">Message</label>
-                                        <textarea class="form-control text-black-60" id="validationCustom03" rows="5" required></textarea>
+                                        <textarea name="pesan" class="form-control text-black-60" id="validationCustom03" rows="5" required></textarea>
                                         <div class="invalid-feedback">
                                             Please give me some words.
                                         </div>
                                     </div>
-                                        
                                     <div class="col-12">
-                                        <button class="btn my-btn-primary float-end shadow" type="submit">Send</button>
+                                        <button class="btn my-btn-primary float-end shadow btn-send" type="submit">Send</button>
+                                        <button class="btn my-btn-primary float-end shadow btn-sending d-none" type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            Sending...
+                                        </button>
                                     </div>
                                 </form>
                             </div>
